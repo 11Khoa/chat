@@ -1,0 +1,21 @@
+body{
+  padding: 50px
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background: #f5f5f5;
+}
+
+a{
+  color: #00B7FF
+}
+.wrap{
+  width: 500px;
+  margin: 0 auto;
+  background: #fff;
+}
+.ms:nth-child(odd){
+  background: #ddd;
+}
+#text_box{
+  min-height: 70vh;
+  overflow-y: scroll;
+}
