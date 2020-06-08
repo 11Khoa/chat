@@ -1,7 +1,9 @@
 
 
+
+
 $(function(){
-    var socket = io.connect('http://localhost:3000/')
+    var socket = io.connect(window.location.href)
     var message=$("#message")
     var send_message=$("#send_message")
     var user_name=$("#user_name")
