@@ -54,7 +54,7 @@ $(function(){
                 var d = text_box.get(0);
                 setTimeout(() => {
                     d.scrollTop = d.scrollHeight;
-                }, 100);
+                }, 500);
             }
         })
 
