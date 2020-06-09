@@ -38,7 +38,7 @@ io.on('connection',(socket)=>{
 
 
   socket.on('new_message',(data)=>{
-    console.log("Tin nhắn mới: "+ data.message);
+    // console.log("Tin nhắn mới: "+ data.message);
     
     
     io.sockets.emit('new_message',{message: data.message , user_name: socket.user_name})
