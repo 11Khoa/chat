@@ -16,12 +16,16 @@ h1{
   text-transform: capitalize;
 }
 .wrap{
-  width: 500px;
+  width: 70%;
   margin: 0 auto;
   background: #fff;
 }
 #text_box p{
   line-height: 25px;
+}
+.ttl span{
+  color: red;
+  text-transform: capitalize
 }
 .user{
   background: green;

@@ -9,10 +9,13 @@ $(function(){
     var user_name=$("#user_name")
     var sent_name=$("#sent_name")
     var text_box=$("#text_box")
+    var hi="Chào thím: "
         // emit
        
         if(localStorage.getItem('name')){
-            user_name.attr('disabled','disabled');
+            user_name.remove();
+            sent_name.remove();
+            $(".ttl").html(`${hi}<span>${localStorage.getItem("name")}</span>`)
             user_name.val(localStorage.getItem('name'))
             socket.emit("change_username",{user_name: user_name.val()})
         }else{
@@ -23,15 +26,20 @@ $(function(){
                     console.log(user_name.val());
                     socket.emit("change_username",{user_name: user_name.val()})
                     localStorage.setItem("name",user_name.val())
-                    user_name.attr('disabled','disabled');
+                    $(".ttl").html(`${hi}<span>${user_name.val()}</span>`)
+
+                    user_name.remove();
+                    sent_name.remove();
                 }
             })
             user_name.keypress(function(e){
                 if(e.which==13 ){
-                    console.log(user_name.val());
+                    // console.log(user_name.val());
                     socket.emit("change_username",{user_name: user_name.val()})
                     localStorage.setItem("name",user_name.val())
-                    user_name.attr('disabled','disabled');
+                    $(".ttl").html(`${hi}<span>${user_name.val()}</span>`)
+                    user_name.remove();
+                    sent_name.remove();
                 }
             })
         }
@@ -39,25 +47,42 @@ $(function(){
 
         // mes
         send_message.click(function(){
-            console.log(message.val());
-            
-            socket.emit('new_message',{message: message.val()})
-            message.val("")
+            if (!message.val()) {
+                alert("Nhập vào")
+                message.focus()
+            }else{
+                // console.log(message.val());
+                socket.emit('new_message',{message: message.val()})
+                message.val("")
+            }
             
         })
 
         message.keypress(function(e){
             if(e.which==13){
-                console.log(message.val());
-                socket.emit('new_message',{message: message.val()})
-                message.val("")
-                var d = text_box.get(0);
-                setTimeout(() => {
-                    d.scrollTop = d.scrollHeight;
-                }, 500);
+                if(message.val()){
+                    console.log(message.val());
+                    socket.emit('new_message',{message: message.val()})
+                    message.val("")
+                    var d = text_box.get(0);
+                    setTimeout(() => {
+                        d.scrollTop = d.scrollHeight;
+                    }, 500);
+                }else{
+                    alert("Nhập vào...")
+                    message.focus()
+                }
             }
         })
 
+        text_box.on("change",function(){
+            console.log(text_box.scrollHeight);
+            
+             var d = text_box.get(0);
+            setTimeout(() => {
+                d.scrollTop = d.scrollHeight;
+            }, 500);
+        })
 
 
         socket.on('new_message',(data)=>{
