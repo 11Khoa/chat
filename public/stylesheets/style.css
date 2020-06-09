@@ -19,6 +19,12 @@ a{
 #text_box p{
   line-height: 25px;
 }
+.user{
+  background: green;
+  border-radius: 999px;
+  padding: 2px 5px;
+  color: #fff;
+}
 .ms:nth-child(odd){
   background: #ddd;
 }

@@ -37,8 +37,6 @@ $(function(){
                 console.log(message.val());
                 socket.emit('new_message',{message: message.val()})
                 message.val("")
-                var d = message.get(0);
-                d.scrollTop = d.scrollHeight;
             }
         })
 
@@ -47,7 +45,7 @@ $(function(){
         socket.on('new_message',(data)=>{
             console.log(data);
             text_box.append(`
-                <p class="ms">${data.user_name}: ${data.message}</p>
+                <p class="ms"><span class="user">${data.user_name}:</span> ${data.message}</p>
             `)
         })
         
